@@ -8,8 +8,8 @@ using System.Web.Mvc;
 
 namespace PokemonTracker.Controllers
 {
-    public class HomeController : Controller
-    {
+	public class HomeController : Controller
+	{
 		private IHomeService _homeService;
 
 		public HomeController()
@@ -17,14 +17,14 @@ namespace PokemonTracker.Controllers
 			_homeService = new HomeService();
 		}
 
-        // Http GET by default
+		// Http GET by default
 		// '/' will map to 'Home/Index' : check App_Start/RouteConfig
 		// Note how there is a Views/Home/Index.cshtml file -  this is what View() references
-        public ActionResult Index()
-        {
+		public ActionResult Index()
+		{
 			var model = _homeService.GetHomeViewModel();
 			return View(model);
-        }
+		}
 
 		// again, notice the corresponding Views/Home/Search file
 		public ActionResult Search(string param)

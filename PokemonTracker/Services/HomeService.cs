@@ -26,7 +26,7 @@ namespace PokemonTracker.Services
 			{
 				Pokemons = _pokemonRepo.GetAll(),
 				Trainers = _trainerRepo.GetAll()
-			}; 
+			};
 		}
 
 		public SearchViewModel GetSearchViewModel(string param)

@@ -8,7 +8,7 @@ namespace PokemonTracker.Models
 {
 	public class PokemonTrackerContext : DbContext
 	{
-		public PokemonTrackerContext(): base("name=PokemonTrackerContext")
+		public PokemonTrackerContext() : base("name=PokemonTrackerContext")
 		{ }
 
 		public DbSet<Pokemon> Pokemons { get; set; }
