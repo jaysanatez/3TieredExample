@@ -1,0 +1,89 @@
+﻿@model PokemonTracker.Models.ViewModels.HomeViewModel
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<title>PokemonTracker</title>
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">PokemonTracker</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Pokemon</a></li>
+					<li class="active"><a href="#">Trainers</a></li>
+				</ul>
+				<form class="navbar-form navbar-left" method="get" action="/home/search">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Search" name="param">
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+
+	<div class="container">
+		<h1>Pokemon</h1>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Pokemon</th>
+					<th>Type</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach(var pokemon in Model.Pokemons)
+				{
+					<tr>
+						<td>@pokemon.Id</td>
+						<td>@pokemon.Name</td>
+						<td>@pokemon.Type</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+
+		<h1>Trainers</h1>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Date Joine</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var trainer in Model.Trainers)
+				{
+					<tr>
+						<td>@trainer.Name</td>
+						<td>@trainer.DateJoined.ToShortDateString()</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
