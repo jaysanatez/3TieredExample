@@ -34,8 +34,8 @@ namespace PokemonTracker.Services
 			return new SearchViewModel()
 			{
 				SearchParam = param,
-				Pokemons = _pokemonRepo.SearchByKey(param),
-				Trainers = _trainerRepo.SearchByKey(param)
+				Pokemons = _pokemonRepo.Where(p => p.Name.Contains(param)),
+				Trainers = _trainerRepo.Where(t => t.Name.Contains(param))
 			};
 		}
 	}

@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using PokemonTracker.Models;
+using System.Linq.Expressions;
 
 namespace PokemonTracker.Repositories
 {
@@ -16,11 +16,16 @@ namespace PokemonTracker.Repositories
 			_context = new PokemonTrackerContext();
 		}
 
-		public void Delete(int id)
+		public void Delete(Pokemon obj)
 		{
-			var pokemon = GetById(id);
+			var pokemon = Find(obj.Id);
 			_context.Pokemons.Remove(pokemon);
 			_context.SaveChanges();
+		}
+
+		public Pokemon Find(int id)
+		{
+			return _context.Pokemons.Find(id);
 		}
 
 		public IEnumerable<Pokemon> GetAll()
@@ -28,20 +33,15 @@ namespace PokemonTracker.Repositories
 			return _context.Pokemons.AsEnumerable();
 		}
 
-		public IEnumerable<Pokemon> SearchByKey(string key)
+		public void Insert(Pokemon obj)
 		{
-			return _context.Pokemons.Where(t => t.Name.Contains(key));
-		}
-
-		public Pokemon GetById(int id)
-		{
-			return _context.Pokemons.AsQueryable().Where(p => p.Id == id).FirstOrDefault();
-		}
-
-		public void Insert(Pokemon pokemon)
-		{
-			_context.Pokemons.Add(pokemon);
+			_context.Pokemons.Add(obj);
 			_context.SaveChanges();
+		}
+
+		public IEnumerable<Pokemon> Where(Expression<Func<Pokemon, bool>> where)
+		{
+			return GetAll().AsQueryable().Where(where);
 		}
 	}
 }
