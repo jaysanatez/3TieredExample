@@ -1,20 +1,20 @@
-﻿using PokemonTracker.Services;
+﻿using PokemonTracker.Models.ViewModels;
+using PokemonTracker.Services;
 using PokemonTracker.Services.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace PokemonTracker.Controllers
 {
 	public class HomeController : Controller
 	{
-		private IHomeService _homeService;
+		private IPokemonService _pokemonService;
+		private ITrainerService _trainerService;
 
 		public HomeController()
 		{
-			_homeService = new HomeService();
+			_pokemonService = new PokemonService();
+			_trainerService = new TrainerService();
 		}
 
 		// Http GET by default
@@ -22,8 +22,13 @@ namespace PokemonTracker.Controllers
 		// Note how there is a Views/Home/Index.cshtml file -  this is what View() references
 		public ActionResult Index()
 		{
-			var model = _homeService.GetHomeViewModel();
-			return View(model);
+			var viewModel = new HomeViewModel()
+			{
+				Pokemons = _pokemonService.GetAllPokemon(),
+				Trainers = _trainerService.GetAllTrainers()
+			};
+
+			return View(viewModel);
 		}
 
 		// again, notice the corresponding Views/Home/Search file
@@ -34,8 +39,14 @@ namespace PokemonTracker.Controllers
 				return RedirectToAction("Index");
 			}
 
-			var model = _homeService.GetSearchViewModel(param);
-			return View(model);
+			var viewModel = new SearchViewModel()
+			{
+				Pokemons = _pokemonService.SearchPokemonForKey(param),
+				Trainers = _trainerService.SearchTrainersForKey(param),
+				SearchParam = param
+			};
+
+			return View(viewModel);
 		}
 	}
 }

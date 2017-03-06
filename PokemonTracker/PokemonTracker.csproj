@@ -152,8 +152,10 @@
     <Compile Include="Repositories\Interfaces\ITrainerRepository.cs" />
     <Compile Include="Repositories\PokemonRepository.cs" />
     <Compile Include="Repositories\TrainerRepository.cs" />
-    <Compile Include="Services\HomeService.cs" />
-    <Compile Include="Services\Interfaces\IHomeService.cs" />
+    <Compile Include="Services\Interfaces\IPokemonService.cs" />
+    <Compile Include="Services\Interfaces\ITrainerService.cs" />
+    <Compile Include="Services\PokemonService.cs" />
+    <Compile Include="Services\TrainerService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
