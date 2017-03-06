@@ -1,5 +1,4 @@
 ﻿using PokemonTracker.Models;
-using PokemonTracker.Repositories;
 using PokemonTracker.Repositories.Interfaces;
 using PokemonTracker.Services.Interfaces;
 using System.Collections.Generic;
@@ -10,9 +9,9 @@ namespace PokemonTracker.Services
 	{
 		private ITrainerRepository _trainerRepo;
 
-		public TrainerService()
+		public TrainerService(ITrainerRepository trainerRepo)
 		{
-			_trainerRepo = new TrainerRepository();
+			_trainerRepo = trainerRepo;
 		}
 
 		public IEnumerable<Trainer> GetAllTrainers()

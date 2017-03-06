@@ -1,5 +1,4 @@
 ﻿using PokemonTracker.Models.ViewModels;
-using PokemonTracker.Services;
 using PokemonTracker.Services.Interfaces;
 using System;
 using System.Web.Mvc;
@@ -11,10 +10,10 @@ namespace PokemonTracker.Controllers
 		private IPokemonService _pokemonService;
 		private ITrainerService _trainerService;
 
-		public HomeController()
+		public HomeController(IPokemonService pokemonService, ITrainerService trainerService)
 		{
-			_pokemonService = new PokemonService();
-			_trainerService = new TrainerService();
+			_pokemonService = pokemonService;
+			_trainerService = trainerService;
 		}
 
 		// Http GET by default

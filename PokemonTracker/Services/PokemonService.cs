@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using PokemonTracker.Models;
 using PokemonTracker.Repositories.Interfaces;
-using PokemonTracker.Repositories;
 
 namespace PokemonTracker.Services.Interfaces
 {
@@ -9,9 +8,9 @@ namespace PokemonTracker.Services.Interfaces
 	{
 		private IPokemonRepository _pokemonRepo;
 
-		public PokemonService()
+		public PokemonService(IPokemonRepository pokemonRepo)
 		{
-			_pokemonRepo = new PokemonRepository();
+			_pokemonRepo = pokemonRepo;
 		}
 
 		public IEnumerable<Pokemon> GetAllPokemon()
