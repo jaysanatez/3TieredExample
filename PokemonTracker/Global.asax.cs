@@ -9,7 +9,7 @@ namespace PokemonTracker
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-			Bootstrapper.Initialise();
+            Bootstrapper.Initialise();
         }
     }
 }
